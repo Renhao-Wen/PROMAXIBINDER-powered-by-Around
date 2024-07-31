@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+    
+    <!-- SEO meta tags -->
+    <title>PROMAXIBINDER</title>
+    <meta name="description" content="Around - Multipurpose Bootstrap HTML Template">
+    <meta name="keywords" content="bootstrap, business, corporate, coworking space, services, creative agency, dashboard, e-commerce, mobile app showcase, saas, multipurpose, product landing, shop, software, ui kit, web studio, landing, light and dark mode, html5, css3, javascript, gallery, slider, touch, creative">
+    <meta name="author" content="Createx Studio">
+
+    <!-- Webmanifest + Favicon / App icons -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/assets/app-icons/icon-180x180.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/assets/app-icons/icon-180x180.png">
+        
+    <!-- Theme switcher (color modes) -->
+    <script src="assets/js/theme-switcher.js"></script>
+
+    <!-- Import Google font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+    <!-- Font icons -->
+    <link rel="stylesheet" href="assets/icons/around-icons.min.css">
+
+    <!-- Theme styles + Bootstrap -->
+    <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+
+    <!-- Page loading styles -->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      [data-bs-theme="dark"] .page-loading {
+        background-color: #121519;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #6f788b;
+      }
+      [data-bs-theme="dark"] .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        background-color: #d7dde2; 
+        border-radius: 50%;
+        opacity: 0;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      [data-bs-theme="dark"] .page-spinner {
+        background-color: rgba(255,255,255,.25);
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes spinner {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+    </style>
+
+    <!-- Page loading scripts -->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading')
+          preloader.classList.remove('active')
+          setTimeout(function () {
+            preloader.remove()
+          }, 1500)
+        }
+      })()
+    </script>
+  </head>
+
+
+    <!-- Page loading spinner -->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+
+    <!-- Cart offcanvas (empty state) - 不显示; -->
+    <div class="offcanvas offcanvas-end py-2 p-sm-4 p-md-5" id="cartOffcanvas" style="width: 680px;display: none;">
+
+      <!--Title--> 
+      <div class="px-4 pt-3">
+        <div class="d-flex justify-content-between align-items-center border-bottom pb-3 pb-sm-4">
+          <h2 class="offcanvas-title d-flex align-items-center mb-1">
+            <svg class="text-body-secondary fs-1 me-3" width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="m20 17.25h-11.57l-.19-1.58 12.11-.95c.82-.07 1.49-.7 1.6-1.52l.14-1.1c.05-.41-.24-.79-.65-.84-.42-.05-.79.24-.84.65l-.14 1.1c-.01.12-.11.21-.23.21l-12.17.96-.87-7.42h4.8c.41 0 .75-.34.75-.75s-.34-.75-.75-.75h-4.98l-.11-.96c-.13-1.13-.96-2.07-2.06-2.35l-2.66-.67c-.4-.1-.81.14-.91.55-.1.4.14.81.55.91l2.66.67c.5.12.88.55.94 1.07l1.53 13c-.99.41-1.7 1.4-1.7 2.54 0 1.52 1.23 2.75 2.75 2.75s2.75-1.23 2.75-2.75c0-.45-.12-.87-.31-1.25h7.13c-.19.38-.31.8-.31 1.25 0 1.52 1.23 2.75 2.75 2.75s2.75-1.23 2.75-2.75-1.23-2.75-2.75-2.75zm-10.75 2.75c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25zm10.75 1.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm-4.03-13.28 1.97-1.97-1.97-1.97c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l1.97 1.97 1.97-1.97c.29-.29.77-.29 1.06 0s.29.77 0 1.06l-1.97 1.97 1.97 1.97c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22s-.38-.07-.53-.22l-1.97-1.97-1.97 1.97c-.15.15-.34.22-.53.22s-.38-.07-.53-.22c-.29-.29-.29-.77 0-1.06z"/></svg>
+
+            Your cart is empty
+          </h2>
+          <button class="btn-close mb-1 me-n1" type="button" data-bs-dismiss="offcanvas" data-bs-target="#cartOffcanvas" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="offcanvas-body">
+        <p class="mb-4">Is your shopping cart feeling a little lonely? Don't let it sit there empty and forgotten. It's time to fill it up with your favorite macarons!</p>
+        <a class="btn btn-dark rounded-pill" href="#cartOffcanvas" data-bs-dismiss="offcanvas">Start shopping</a>
+      </div>
+    </div>
+    
+
+    <!-- Page wrapper -->
+    <main class="page-wrapper">
+
+      <!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+      <header class="navbar navbar-expand-lg fixed-top bg-light">
+        <div class="container">
+
+          <!-- Navbar brand (Logo) -->
+          <a class="navbar-brand pe-sm-3" href="index.html">
+            <span class="text-primary flex-shrink-0 me-2">
+              <img src="/assets/app-icons/icon-66x66.png" alt="Description of image" />
+            </span>
+            <span class="d-none d-sm-inline">PROMAXIBINDER</span>
+          </a>
+
+          <!-- Theme switcher -->
+          <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+            <input class="form-check-input" type="checkbox" id="theme-mode">
+            <label class="form-check-label" for="theme-mode">
+              <i class="ai-sun fs-lg"></i>
+            </label>
+            <label class="form-check-label" for="theme-mode">
+              <i class="ai-moon fs-lg"></i>
+            </label>
+          </div>
+
+          <!-- Account + Cart 不显示-->
+          <div class="nav align-items-center order-lg-3 ms-n1 me-3 me-sm-0" style="display: none;">
+            <a class="nav-link fs-4 p-2 mx-sm-1 d-none d-sm-flex" href="account-signin.html" aria-label="Account">
+              <i class="ai-user"></i>
+            </a>
+            <a class="nav-link position-relative fs-4 p-2" href="#cartOffcanvas" data-bs-toggle="offcanvas" aria-label="Shopping cart">
+              <i class="ai-cart"></i>
+            </a>
+          </div>
+
+          <!-- Mobile menu toggler (Hamburger) -->
+          <button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Navbar collapse (Main navigation) -->
+          <nav class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Explore</a>
+                <div class="dropdown-menu overflow-hidden p-0">
+                  <div class="d-lg-flex">
+                    <div class="mega-dropdown-column pt-1 pt-lg-3 pb-lg-4">
+                      <ul class="list-unstyled mb-0">
+                        <li>
+                          <a class="dropdown-item" href="All Products.html">All Products</a>
+                          <span class="mega-dropdown-column position-absolute top-0 end-0 h-100 bg-size-cover bg-repeat-0 rounded-3 rounded-start-0" style="background-image: url(assets/img/megamenu/landings.jpg);"></span>
+                        </li>
+                        <li><hr class="divider pb-1" style="color:rgb(73, 73, 73);"></li> 
+                        <li>
+                          <a class="dropdown-item" href="landing-mobile-app-showcase.html">Series I</a>
+                          <span class="mega-dropdown-column position-absolute top-0 end-0 h-100 bg-size-cover bg-repeat-0 z-2 opacity-0" style="background-image: url(assets/img/megamenu/mobile-app.jpg);"></span>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="landing-product.html">Series II</a>
+                          <span class="mega-dropdown-column position-absolute top-0 end-0 h-100 bg-size-cover bg-repeat-0 z-2 opacity-0" style="background-image: url(assets/img/megamenu/product-landing.jpg);"></span>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="landing-saas-v1.html">Series III</a>
+                          <span class="mega-dropdown-column position-absolute top-0 end-0 h-100 bg-size-cover bg-repeat-0 z-2 opacity-0" style="background-image: url(assets/img/megamenu/saas-1.jpg);"></span>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="landing-saas-v2.html">Series IV</a>
+                          <span class="mega-dropdown-column position-absolute top-0 end-0 h-100 bg-size-cover bg-repeat-0 z-2 opacity-0" style="background-image: url(assets/img/megamenu/saas-2.jpg);"></span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="mega-dropdown-column position-relative border-start z-3"></div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Social Media</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="account-overview.html">Instagram</a></li>
+                  <li><a class="dropdown-item" href="account-settings.html">Facebook</a></li>
+                  <li><a class="dropdown-item" href="account-billing.html">YouTube</a></li>
+                  <li><a class="dropdown-item" href="account-favorites.html">Design Story</a></li>
+                  <li><a class="dropdown-item" href="contact us.html">Contact Us</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">About Us</a>
+              </li>
+              <!--
+              <li class="nav-item border-top mt-2 py-2 d-sm-none">
+                <a class="nav-link" href="account-signin.html">
+                  <i class="ai-user fs-lg me-2"></i>
+                  Sign In
+                </a>
+              </li>
+            </ul>
+            <div class="d-md-none p-3 mt-n3">
+              <a class="btn btn-primary w-100 mb-1" href="https://themes.getbootstrap.com/product/around-multipurpose-template-ui-kit/" target="_blank" rel="noopener">
+                <i class="ai-cart fs-xl me-2 ms-n1"></i>
+                Buy now
+              </a>
+            </div>
+            -->
+          </nav>
+        </div>
+      </header>
+
+<!----------------------------------------------------------------------------------------- 分割线 ----------------------------------------------------------------------------------------------------->
+
+      <!-- Page content -->
+      <section class="container overflow-hidden py-5 mt-5 mb-2 mb-md-3 mb-lg-4 mb-xxl-5">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+          <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">All Products</li>
+          </ol>
+        </nav>
+
+        <!-- Page title -->
+        <h1 class="text-center pb-2 pb-md-3 pb-lg-4">All Products</h1>
+
+        <div class="masonry-filterable">
+
+          <!-- Filters -->
+          <ul class="masonry-filters nav nav-pills fs-sm flex-nowrap overflow-auto text-nowrap w-100 mx-auto pb-4 mb-2 mb-sm-3" style="max-width: 590px;">
+            <li class="nav-item mb-0">
+              <a class="nav-link border active" href="#" data-group="all">All</a>
+            </li>
+            <li class="nav-item mb-0">
+              <a class="nav-link border" href="#" data-group="Series I">Series I</a>
+            </li>
+            <li class="nav-item mb-0">
+              <a class="nav-link border" href="#" data-group="Series II">Series II</a>
+            </li>
+            <li class="nav-item mb-0">
+              <a class="nav-link border" href="#" data-group="Series III">Series III</a>
+            </li>
+            <li class="nav-item mb-0">
+              <a class="nav-link border" href="#" data-group="Series IV">Series IV</a>
+            </li>
+          </ul>
+
+          <!-- Grid of portfolio items -->
+          <div class="masonry-grid" data-columns="3">
+
+            <!-- Item -->
+            <article class="masonry-grid-item pb-lg-5 mb-3 mb-lg-0 mb-xl-2" data-groups='["Series I"]'>
+              <div class="card-hover zoom-effect mx-auto" style="max-width: 620px;">
+                <div class="zoom-effect-wrapper rounded-5">
+                  <div class="zoom-effect-img">
+                    <img src="/assets/img/Promaxibinder/Products/product1.png" alt="Image">
+                  </div>
+                </div>
+                <div class="pt-4 mt-lg-2">
+                  <h2 class="h5 mb-2">
+                    <a class="stretched-link text-nav" href="a-productdetails-1.html">Product Name</a>
+                  </h2>
+                  <span class="fs-sm text-body-secondary opacity-0 d-none d-sm-block">Branding, Strategy</span>
+                  <span class="fs-sm text-body-secondary d-sm-none">Branding, Strategy</span>
+                </div>
+              </div>
+            </article>
+            
+            <!-- Item -->
+            <article class="masonry-grid-item pb-lg-5 mb-3 mb-lg-0 mb-xl-2" data-groups='["Series II"]'>
+              <div class="card-hover zoom-effect mx-auto" style="max-width: 620px;">
+                <div class="zoom-effect-wrapper rounded-5">
+                  <div class="zoom-effect-img">
+                    <img src="assets/img/Promaxibinder/Products/product2.png" alt="Image">
+                  </div>
+                </div>
+                <div class="pt-4 mt-lg-2">
+                  <h2 class="h5 mb-2">
+                    <a class="stretched-link text-nav" href="portfolio-single-v1.html">Design for eco bags and merch</a>
+                  </h2>
+                  <span class="fs-sm text-body-secondary opacity-0 d-none d-sm-block">Product design</span>
+                  <span class="fs-sm text-body-secondary d-sm-none">Product design</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item -->
+            <article class="masonry-grid-item pb-lg-5 mb-3 mb-lg-0 mb-xl-2" data-groups='["Series III"]'>
+              <div class="card-hover zoom-effect mx-auto" style="max-width: 620px;">
+                <div class="zoom-effect-wrapper rounded-5">
+                  <div class="zoom-effect-img">
+                    <img src="assets/img/portfolio/grid/04.jpg" alt="Image">
+                  </div>
+                </div>
+                <div class="pt-4 mt-lg-2">
+                  <h2 class="h5 mb-2">
+                    <a class="stretched-link text-nav" href="portfolio-single-v1.html">Bottle for French perfume brand</a>
+                  </h2>
+                  <span class="fs-sm text-body-secondary opacity-0 d-none d-sm-block">Packaging design</span>
+                  <span class="fs-sm text-body-secondary d-sm-none">Packaging design</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item -->
+            <article class="masonry-grid-item pb-lg-5 mb-3 mb-lg-0 mb-xl-2" data-groups='["ebook"]'>
+              <div class="card-hover zoom-effect mx-auto" style="max-width: 620px;">
+                <div class="zoom-effect-wrapper rounded-5">
+                  <div class="zoom-effect-img">
+                    <img src="assets/img/portfolio/grid/03.jpg" alt="Image">
+                  </div>
+                </div>
+                <div class="pt-4 mt-lg-2">
+                  <h2 class="h5 mb-2">
+                    <a class="stretched-link text-nav" href="portfolio-single-v1.html">Book cover design Twin Fish</a>
+                  </h2>
+                  <span class="fs-sm text-body-secondary opacity-0 d-none d-sm-block">Cover design</span>
+                  <span class="fs-sm text-body-secondary d-sm-none">Cover design</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item -->
+            <article class="masonry-grid-item pb-lg-5 mb-3 mb-lg-0 mb-xl-2" data-groups='["identity"]'>
+              <div class="card-hover zoom-effect mx-auto" style="max-width: 620px;">
+                <div class="zoom-effect-wrapper rounded-5">
+                  <div class="zoom-effect-img">
+                    <img src="assets/img/portfolio/grid/06.jpg" alt="Image">
+                  </div>
+                </div>
+                <div class="pt-4 mt-lg-2">
+                  <h2 class="h5 mb-2">
+                    <a class="stretched-link text-nav" href="portfolio-single-v1.html">Business cards and identity for Sen Jonson</a>
+                  </h2>
+                  <span class="fs-sm text-body-secondary opacity-0 d-none d-sm-block">Identity design</span>
+                  <span class="fs-sm text-body-secondary d-sm-none">Identity design</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item -->
+            <article class="masonry-grid-item pb-lg-5 mb-3 mb-lg-0 mb-xl-2" data-groups='["product"]'>
+              <div class="card-hover zoom-effect mx-auto" style="max-width: 620px;">
+                <div class="zoom-effect-wrapper rounded-5">
+                  <div class="zoom-effect-img">
+                    <img src="assets/img/portfolio/grid/05.jpg" alt="Image">
+                  </div>
+                </div>
+                <div class="pt-4 mt-lg-2">
+                  <h2 class="h5 mb-2">
+                    <a class="stretched-link text-nav" href="portfolio-single-v1.html">Toothbrushes made from eco materials</a>
+                  </h2>
+                  <span class="fs-sm text-body-secondary opacity-0 d-none d-sm-block">Product design</span>
+                  <span class="fs-sm text-body-secondary d-sm-none">Product design</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-n1 mb-md-2 mb-lg-3 mb-xl-4" aria-label="Portfolio pagination">
+          <ul class="pagination justify-content-center">
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">1<span class="visually-hidden">(current)</span></span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+          </ul>
+        </nav>
+      </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer bg-dark position-relative py-4 py-md-5">
+      <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(255,255,255, .03);"></div>
+      <div class="container pt-md-2 pt-lg-3 pt-xl-4">
+        <div class="row pb-5 pt-sm-2 mb-lg-2">
+          <div class="col-sm-5 col-md-4 col-xl-3 pb-2 pb-sm-0 mb-4 mb-sm-0">
+            <a class="navbar-brand py-0 mb-3 mb-md-4" href="index.html">
+              <span class="text-primary flex-shrink-0 me-2">
+                <img src="/assets/app-icons/favicon.ico" alt="...">
+              </span>
+              <span class="text-light opacity-90">PROMAXIBINDER</span>
+            </a>
+            <p class="text-body fs-sm pb-2 pb-md-3 mb-3">PROMAXIBINDER is a company that committed to be the leader of the card holder industry.</p>
+            <div class="d-flex">
+              <a class="btn btn-icon btn-sm btn-secondary btn-instagram rounded-circle me-3" href="#" aria-label="Instagram">
+                <i class="ai-instagram"></i>
+              </a>
+              <a class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3" href="#" aria-label="Facebook">
+                <i class="ai-facebook"></i>
+              </a>
+              <a class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle" href="#" aria-label="YouTube">
+                <i class="ai-youtube"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-6 offset-sm-1 offset-md-2 offset-xl-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+              <div class="col mb-4 mb-md-0">
+              </div>
+              <div class="col">
+                <ul class="nav flex-column">
+                  <li><a class="nav-link fw-normal py-1 px-0" href="#">About us</a></li>
+                  <li><a class="nav-link fw-normal py-1 px-0" href="#">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="nav fs-sm mb-0">
+          <span class="text-body-secondary">&copy; All rights reserved.</span>
+        </p>
+      </div>
+    </footer>
+
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+      <svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+      </svg>
+      <i class="ai-arrow-up"></i>
+    </a>
+
+
+    <!-- Vendor scripts: JS libraries and plugins -->
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/shufflejs/dist/shuffle.min.js"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="assets/js/theme.min.js"></script>
+  </body>
+</html>
