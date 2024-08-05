@@ -606,44 +606,18 @@
                 </div>
               </div>
 
-              <!-- Weight button selector -->
-              <div class="h6">Size</div>
-              <div class="d-flex">
-                <div class="me-3">
-                  <input class="btn-check" type="radio" name="Size" value="100 pcs" checked id="size1">
-                  <label class="btn btn-outline-secondary px-2" for="size1">
-                    <span class="mx-1">100pcs</span>
-                  </label>
-                </div>
-                <div class="me-3">
-                  <input class="btn-check" type="radio" name="Size" value="150 pcs" id="size2">
-                  <label class="btn btn-outline-secondary px-2" for="size2">
-                    <span class="mx-1">150pcs</span>
-                  </label>
-                </div>
-                <div class="me-3">
-                  <input class="btn-check" type="radio" name="Size" value="200 pcs" id="size3">
-                  <label class="btn btn-outline-secondary px-2" for="size3">
-                    <span class="mx-1">200 pcs</span>
-                  </label>
-                </div>
+              <!--折扣码-->
+              <div class="input-group px-3 py-2" style="width: 400px;">
+                <input type="text" class="form-control" placeholder="Button on the right" value="DISCOUNT2024" id="discountCode" readonly>
+                <button type="button" class="btn btn-primary" onclick="copyCode()">Copy Code</button>
               </div>
 
               <!-- Action buttons -->
-              <div class="d-sm-flex d-md-block d-lg-flex py-4 py-md-5 my-3 my-md-0 mt-lg-0 mb-lg-4">
-                <div class="count-input bg-gray rounded-3 me-4 mb-3 mb-sm-0 mb-md-3 mb-lg-0">
-                  <button class="btn btn-icon btn-lg fs-xl" type="button" data-decrement>-</button>
-                  <input class="form-control" type="number" value="1" readonly>
-                  <button class="btn btn-icon btn-lg fs-xl" type="button" data-increment>+</button>
-                </div>
-                <div class="d-flex align-items-center">
-                  <button class="btn btn-lg btn-primary w-100 w-lg-auto me-2" type="button"><i class="ai-cart me-2 ms-n1"></i>Add to cart</button>
-                  <div class="nav">
-                    <a class="nav-link fs-3 px-3" href="#" data-bs-toggle="tooltip" title="Add to Favorites" aria-label="Add to Favorites">
-                      <i class="ai-heart"></i>
-                    </a>
-                  </div>
-                </div>
+              <div class="py-3">
+                <p class="fs-sm mb-2">We are excited to offer our products on Amazon! Click the link below to make your purchase today.</p>
+                <a href="https://www.amazon.com" class="btn btn-secondary btn-lg">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="d-dark-mode-none mx-1" width="136" alt="Amazon Logo">
+                </a>
               </div>
 
               <!-- Sharing -->
@@ -919,5 +893,6 @@
 
     <!-- Bootstrap + Theme scripts -->
     <script src="assets/js/theme.min.js"></script>
+    <script src="src/js/script.js"></script>
   </body>
 </html>
